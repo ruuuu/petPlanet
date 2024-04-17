@@ -1,6 +1,9 @@
 /* базовые стили https://codepen.io/Quper/pen/GRRZzWy */
 
-@use 'fonts' as *;
+@use 'fonts' as *; // импорт fonts.scss
+@use 'variables' as *;  // импорт variables.scss
+
+
 
 html {
  position: relative;
@@ -24,9 +27,11 @@ body {
  text-rendering: optimizeLegibility;
  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
  -webkit-tap-highlight-color: transparent;
- font-size: 16px;
- color: #000;
- background-color: #fff;
+ font-size: $font-size;
+ font-weight: $font-weight;
+ line-height: $line-height;
+ color: $green;
+ background-color: $light;
 }
 
 

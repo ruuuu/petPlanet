@@ -3,10 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> <!-- из папки public берет -->
-    <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
+   
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title> Pet planet - магазин товаров для животных </title>
-    <link rel="stylesheet" href="scss/index.scss"> <!-- так можно покдлючат тлько если есть сборщик -->
+    <link rel="preload" href="/fonts/onest-v6-cyrillic_latin-700.woff2" type="font/woff2" as="font" crossorigin>        <!-- предзагрузка шрифтов -->
+    <link rel="preload" href="/fonts/onest-v6-cyrillic_latin-regular.woff2" type="font/woff2" as="font" crossorigin>     
+    <link rel="stylesheet" href="scss/index.scss">      <!-- так можно покдлючат тлько если есть сборщик -->
   </head>
 
   <body>

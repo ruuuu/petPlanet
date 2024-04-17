@@ -1,0 +1,13 @@
+.header {
+    position: absolute; // позиционируем относительно body
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10; // чтоб сверху был
+    // background-color: ;
+
+    &__logo {
+        width: 337px;
+        padding-top: 50px;
+    }
+}

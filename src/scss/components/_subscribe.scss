@@ -1,0 +1,76 @@
+@use '../variables' as *;
+@use '../fonts' as *;
+
+.subscribe {
+
+    padding: 120px 0;
+
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__title {
+        max-width: 1000px;
+        margin-bottom: 50px;
+        font-weight: 700;
+        font-size: 52px;
+        line-height: 1.3;
+        text-align: center;
+        color: $green;
+    }
+
+    &__field {
+        // fieldset
+        max-width: 732px;
+        width: 100%;
+        position: relative;
+        margin: 0;
+        padding: 0;
+        border: none;
+    }
+
+    &__input {
+        width: 100%;
+        padding: 16px 32px;
+        border: 2px solid $purple;
+        border-radius: 40px;
+        background-color: $light;
+        font-size: 24px;
+        line-height: 1.4;
+        color: $green;
+
+        &::placeholder {
+            opacity: 0.4;
+        }
+    }
+
+    &__button {
+        position: absolute;
+        right: 0;
+        top: 0;
+        //left: 0;
+        height: 66px;
+        font-weight: 700;
+        border: 1px solid transparent;
+        border-radius: 40px;
+        padding: 16px 24px;
+        background-color: $purple;
+        text-align: center;
+        color: $light;
+
+        &::after {
+            content: '';
+            display: block;
+            // top: center;
+            // right: 0;
+            width: 16px;
+            height: 16px;
+            background-image: url('/img/arrow.svg');
+
+            background-position: top center right 0;
+        }
+    }
+}

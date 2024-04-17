@@ -1,0 +1,24 @@
+@use '../variables' as *;
+
+
+.hero {
+    padding-top: 218px;
+    padding-bottom: 245px;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: $purple;
+    color: $light;
+    background-image: url('../../img/bg-dog@1x.png'), url('../../img/pattern.svg'); // img/pattern.svg
+    background-size: contain, cover; // для 1ой картинки contain, для 2ой cover(чтоб картинка растянулась на весь экран). 
+    background-position: right, center; // песель справа, фоновая картинка по уентру
+    background-repeat: no-repeat;
+
+    &__title {
+        max-width: 810px;
+        margin-bottom: 50px;
+    }
+
+    &__text {
+        max-width: 420px;
+    }
+}

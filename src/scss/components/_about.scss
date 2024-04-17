@@ -1,0 +1,51 @@
+@use '../variables' as *;
+@use '../fonts' as *;
+
+
+.about {
+    padding-top: 120px;
+    padding-bottom: 278px;
+    padding-left: 0;
+    padding-right: 0;
+
+    &__title {
+        margin-bottom: 32px;
+        font-weight: 700;
+        font-size: 52px;
+        line-height: 1.3;
+        text-align: center;
+    }
+
+    &__box {
+        // max-width: 640px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        gap: 20px;
+        padding-top: 18px;
+
+        &::before {
+            // для картинки кошки (флекс элемент)
+            content: '';
+            display: block;
+            flex-basis: 50%; // размер картинки до сжатия(flex-shrink) и растягивания(flex-grow)
+            height: 496px;
+            transform: translateY(-18px); // сдвиг вверх
+            background-image: url('/img/cat@1x.png');
+            background-size: contain; //  чтоб картинка не обрезалась
+            background-repeat: no-repeat;
+
+        }
+    }
+
+    &__content {
+        // флекс сэлемент
+        flex-basis: 50%;
+
+    }
+
+    &__text {
+        padding: 10px 24px;
+    }
+}

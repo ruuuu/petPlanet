@@ -1,2 +1,4 @@
 @import "default";  // импорт default.scss
 //либо можно так на современном синтасисе @use "default" as *; // загружем все стили из  default.scss
+@import 'normalize.css';  // normalize.css -нзв пакета
+

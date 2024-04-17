@@ -1,4 +1,7 @@
 /* базовые стили https://codepen.io/Quper/pen/GRRZzWy */
+
+@use 'fonts' as *;
+
 html {
  position: relative;
  box-sizing: border-box;
@@ -15,7 +18,7 @@ body {
  overflow-x: hidden;
  min-width: 320px;
  min-height: 100vh;  // расятгиватся на всю высоту экрана
- font-family: Arial, sans-serif;
+ font-family: $font-family;
  -webkit-font-smoothing: antialiased;// эти сво-ва нужны для оптимизации отображени шрифта в разн устройствх
  -moz-osx-font-smoothing: grayscale;
  text-rendering: optimizeLegibility;

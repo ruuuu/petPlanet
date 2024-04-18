@@ -12,20 +12,23 @@
     background-image: url('/img/paw.svg');
     background-size: 375px 355px;
     background-repeat: no-repeat;
-    background-position: top -70% center;
-
+    background-position: 59% 50px; // 100-((590/1440)*100)  590px- расстояие от левой границы до лапки, 50px это top
 
     &__container {
         display: grid;
         grid-template-areas:
             'logo contacts'
-            'info .'
+            'info contacts'
         ;
     }
 
     &__logo {
         // грид элемент
         grid-area: logo;
+        display: block;
+        width: 331px;
+        height: 57px;
+        margin-bottom: 30px;
     }
 
     &__info {
@@ -38,14 +41,25 @@
         margin-bottom: 20px;
     }
 
-    &__text {}
+    &__text {
+        margin-bottom: 10px;
+    }
+
 
     &__list {
         display: flex;
+        align-items: center;
         gap: 10px;
     }
 
-    &__item {}
+    &__item {
+        margin-bottom: 10px;
+        font-size: 16px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
 
     &__link {}
 
@@ -53,6 +67,7 @@
         // грид элемент
         grid-area: contacts;
         justify-self: end; // выравнивание по горизонтали
+        font-style: normal;
     }
 
     &__email {

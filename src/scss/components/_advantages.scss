@@ -2,10 +2,25 @@
 
 
 .advantages {
+    position: relative; // собаку и звездочку относиельно этого элемента будем расплагать
+    z-index: 1;
+    color: $light;
+
+    &::after {
+        // собачка
+        position: absolute;
+        content: ''; // у псевдоэлемента всегда должен быть content
+        top: -342px;
+        right: 0;
+        width: 396px;
+        height: 682px;
+        background-image: url('../../img/dog@1x.png');
+        background-repeat: no-repeat;
+        z-index: -99;
+    }
 
     &__bg {
         padding: 100px 0;
-        color: $light;
         background-image: url('/img/pattern.svg');
         background-repeat: no-repeat;
         background-size: cover; //  растягивается на весь экран
@@ -57,5 +72,38 @@
 
     &__text {
         text-align: center;
+    }
+
+    &__count-box {
+        position: absolute;
+        top: -115px;
+        left: 0;
+        width: 306px;
+        height: 307px;
+        background-image: url('/img/star.svg');
+        background-size: contain; // чтоб звездочка не обрезалась
+        background-repeat: no-repeat;
+        z-index: 100;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .about {
+        &__count {
+            font-size: 52px;
+            font-weight: 700;
+        }
+
+
+        &__count-text {
+            max-width: 122px;
+            line-height: 1.2;
+            text-align: center;
+            font-size: 24px
+        }
+
     }
 }

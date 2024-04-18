@@ -1,0 +1,63 @@
+@use '../variables' as *;
+
+
+.footer {
+    background-color: $green;
+    padding-top: 80px;
+    padding-bottom: 32px;
+    padding-left: 0;
+    padding-right: 0;
+    color: $light;
+    line-height: 1.4;
+    background-image: url('/img/paw.svg');
+    background-size: 375px 355px;
+    background-repeat: no-repeat;
+    background-position: top -70% center;
+
+
+    &__container {
+        display: grid;
+        grid-template-areas:
+            'logo contacts'
+            'info .'
+        ;
+    }
+
+    &__logo {
+        // грид элемент
+        grid-area: logo;
+    }
+
+    &__info {
+        // грид элемент
+        grid-area: info;
+        font-size: 16px;
+    }
+
+    &__copyright {
+        margin-bottom: 20px;
+    }
+
+    &__text {}
+
+    &__list {
+        display: flex;
+        gap: 10px;
+    }
+
+    &__item {}
+
+    &__link {}
+
+    &__contacts {
+        // грид элемент
+        grid-area: contacts;
+        justify-self: end; // выравнивание по горизонтали
+    }
+
+    &__email {
+        display: block;
+        margin-bottom: 20px;
+        font-size: 24px;
+    }
+}

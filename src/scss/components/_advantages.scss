@@ -1,13 +1,12 @@
-.advantages{
+.advantages {
 
-  &__bg{
-    //padding-top: ;
-    //background-color: ;
-    //background-image: ;
-    // back-repea
-    // background-siz: 
-    // birder-radius 
-
-  }
+    &__bg {
+        //padding-top: ;
+        //background-color: ;
+        //background-image: ;
+        // back-repea
+        // background-siz: 
+        // birder-radius 
+        grid-template-columns: repeat(1fr, 3);
+    }
 }
-

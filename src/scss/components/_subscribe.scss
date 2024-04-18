@@ -22,11 +22,11 @@
         color: $green;
     }
 
-    &__field {
+    &__fieldset {
         // fieldset
         max-width: 732px;
         width: 100%;
-        position: relative;
+        position: relative; // кнопку будем позицонировать относительно этого элемента
         margin: 0;
         padding: 0;
         border: none;
@@ -51,26 +51,26 @@
         position: absolute;
         right: 0;
         top: 0;
-        //left: 0;
-        height: 66px;
-        font-weight: 700;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 16px 24px;
         border: 1px solid transparent;
         border-radius: 40px;
-        padding: 16px 24px;
         background-color: $purple;
         text-align: center;
+        font-weight: 700;
         color: $light;
 
         &::after {
+            // флекс элемент
+            // стрелка
             content: '';
             display: block;
-            // top: center;
-            // right: 0;
             width: 16px;
             height: 16px;
             background-image: url('/img/arrow.svg');
-
-            background-position: top center right 0;
         }
     }
 }

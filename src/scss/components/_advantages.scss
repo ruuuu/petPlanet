@@ -1,12 +1,61 @@
+@use '../variables' as *;
+
+
 .advantages {
 
     &__bg {
-        //padding-top: ;
-        //background-color: ;
-        //background-image: ;
-        // back-repea
-        // background-siz: 
-        // birder-radius 
-        grid-template-columns: repeat(1fr, 3);
+        padding: 100px 0;
+        color: $light;
+        background-image: url('/img/pattern.svg');
+        background-repeat: no-repeat;
+        background-size: cover; //  растягивается на весь экран
+        background-position: center;
+        border-radius: 300px 300px 0 0;
+        background-color: $carrot;
+    }
+
+    &__title {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        // либо dislay: flex;
+        //      flex-basis: 417px либо 33%(100/3);
+    }
+
+    &__item {
+        padding-top: 268px;
+        background-size: 256px 256px;
+        background-position: top center;
+        background-repeat: no-repeat;
+    }
+
+    &__item--assortiment {
+        background-image: url('/img/soft-dog-house@1x.png');
+    }
+
+    &__item--quality {
+        background-image: url('/img/miska@1x.png');
+    }
+
+    &__item--person {
+        background-image: url('/img/puppy@1x.png');
+    }
+
+    &__subtitle {
+        width: min-content;
+        margin: 0 auto;
+        margin-bottom: 12px;
+        font-size: 28px;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    &__text {
+        text-align: center;
     }
 }

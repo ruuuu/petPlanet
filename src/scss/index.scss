@@ -1,10 +1,11 @@
 //@import "default";  // импорт _default.scss(старый синтаксис)
-//либо можно так на современном синтасисе:
-@use "default" as *; // загружем все стили из  default.scss
-@use "components/header" as *;
-@use "components/hero" as *;
-@use "components/about" as *;
-@use "components/advantages" as *;
-@use "components/subscribe" as *;
-@use "components/footer" as *;
-@import "normalize.css";  // normalize.css - нзв пакета
+//либо можно так на современном синтаксисе:
+@use "default"; // загружем все стили из  default.scss
+@use "components/header";
+@use "components/hero";
+@use "components/about";
+@use "components/advantages";
+@use "components/subscribe";
+@use "components/footer";
+
+@import "normalize.css"; // normalize.css - нзв пакета

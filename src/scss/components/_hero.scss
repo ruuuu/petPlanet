@@ -1,4 +1,5 @@
-@use '../variables' as *;
+@use '../variables' as *; // импорт переменных, котрые будем использовать здесь
+@use '../media' as *;
 
 
 .hero {
@@ -9,16 +10,62 @@
     background-color: $purple;
     color: $light;
     background-image: url('/img/bg-dog@1x.png'), url('/img/pattern.svg'); //  для Vite путь будет от /img, иначе в dist не будут рабоать
-    background-size: contain, cover; // для 1-ой картинки contain, для 2-ой cover(чтоб картинка растянулась на весь экран). 
-    background-position: right, center; // песель справа, фоновая картинка по уентру
+    background-size: contain, cover; // для 1-ой картинки(песель) contain, для 2-ой cover(чтоб клетчатый фон  растянулась на весь экран). 
+    background-position: right bottom, center; // песель справа внизу, фоновая картинка по центру
     background-repeat: no-repeat;
 
-    &__title {
-        max-width: 810px;
-        margin-bottom: 50px;
+    @include laptop {
+        // <1140;
+        padding: 148px 0 172px;
+        margin-bottom: 32px;
+        background-image: url('/img/bg-dog-laptop@1x.png'), url('/img/pattern.svg');
+        background-size: 655px 564px, cover;
+
     }
+
+    @include tablet {
+        padding: 108px 0 461px;
+        background-image: url('../../img/bg-dog-tablet@1x.png'), url('/img/pattern.svg');
+    }
+
+    @include mobile {
+        padding: 100px 0 284px;
+        margin-bottom: 16px;
+        background-size: 294px 261px, cover;
+        background-image: url('../../img/bg-dog-mobile@1x.png'), url('/img/pattern.svg');
+    }
+
+
+    &__title {
+        width: 810px;
+        max-width: 100%;
+        margin-bottom: 50px;
+
+        @media (max-width: 1300px) {
+            width: 660px;
+        }
+
+        @include laptop {
+            width: 588px;
+        }
+
+        @include tablet {}
+
+        @include mobile {
+            width: 292px;
+        }
+    }
+
 
     &__text {
         max-width: 420px;
+
+        @include laptop {
+            max-width: 360px;
+        }
+
+        @include tablet {}
+
+        @include mobile {}
     }
 }

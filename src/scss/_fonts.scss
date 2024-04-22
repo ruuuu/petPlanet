@@ -1,7 +1,20 @@
 // https://gwfh.mranftl.com/fonts
+@use 'media' as *;
+
+
 
 :root {
     --font-size: 24px; // завели переменную
+
+    @include laptop {
+        --font-size: 20px;
+    }
+
+    @include tablet {}
+
+    @include mobile {
+        --font-size: 16px; // 16px=1em
+    }
 }
 
 

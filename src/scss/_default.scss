@@ -1,8 +1,7 @@
 /* базовые стили https://codepen.io/Quper/pen/GRRZzWy */
-
 @use 'fonts' as *; // импорт fonts.scss
 @use 'variables' as *; // импорт variables.scss
-
+@use 'media' as *;
 
 
 html {
@@ -46,7 +45,6 @@ svg {
 svg {
     max-height: 100%;
 }
-
 
 button {
     padding: 0;
@@ -102,4 +100,12 @@ iframe {
     max-width: 1404px; // 1300(контент)+52(padding)*2
     padding: 0 52px;
     margin: 0 auto;
+
+    @include tablet {
+        padding: 0 46px;
+    }
+
+    @include mobile {
+        padding: 0 14px;
+    }
 }

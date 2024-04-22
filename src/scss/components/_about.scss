@@ -1,12 +1,23 @@
 @use '../variables' as *;
 @use '../fonts' as *;
+@use '../media' as *;
 
 
 .about {
-    padding-top: 120px;
-    padding-bottom: 278px;
-    padding-left: 0;
-    padding-right: 0;
+    padding: 120px 0 278px;
+
+    @include laptop {
+        padding: 100px 0 255px;
+    }
+
+    @include tablet {
+        padding: 100px 0 181px;
+    }
+
+    @include mobile {
+        padding: 80px 0 122px;
+    }
+
 
     &__title {
         margin-bottom: 32px;
@@ -14,14 +25,25 @@
         font-size: 52px;
         line-height: 1.3;
         text-align: center;
+
+
+        @include laptop {
+            font-size: 44px;
+        }
+
+        @include tablet {}
+
+        @include mobile {
+            font-size: 30px;
+        }
     }
+
 
     &__box {
         // max-width: 640px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-
         gap: 20px;
         padding-top: 18px;
 
@@ -36,14 +58,41 @@
             background-size: contain; //  чтоб картинка не обрезалась
             background-repeat: no-repeat;
 
+            @include laptop {
+                height: 319px;
+            }
+
+            @include tablet {
+                width: 408px;
+                max-width: 100%;
+                flex-basis: 319px;
+                height: auto;
+                transform: translateY(0);
+            }
+
+            @include mobile {
+                width: 256px;
+                flex-basis: 191px;
+                background-image: url('../../img/cat-mobile@1x.png');
+            }
+
         }
+
+        @include laptop {}
+
+        @include tablet {
+            flex-direction: column;
+        }
+
+        @include mobile {}
     }
+
 
     &__content {
         // флекс сэлемент
         flex-basis: 50%;
-
     }
+
 
     &__text {
         padding: 10px 24px;

@@ -1,4 +1,6 @@
 @use '../variables' as *;
+@use '../media' as *;
+
 
 
 .advantages {
@@ -16,8 +18,34 @@
         height: 682px;
         background-image: url('../../img/dog@1x.png');
         background-repeat: no-repeat;
+        background-size: contain; //  чтоб картинка не обрезалась
         z-index: -99;
+
+        @include laptop {
+            top: -242px;
+            right: 8px;
+            width: 272px;
+            height: 469px;
+            background-image: url('/img/dog-laptop@1x.png');
+        }
+
+        @include tablet {
+            top: -176px;
+            right: -25px;
+            width: 202px;
+            height: 348px;
+            background-image: url('/img/dog-tablet@1x.png');
+        }
+
+        @include mobile {
+            top: -82px;
+            right: 0;
+            width: 100px;
+            height: 169px;
+            background-image: url('/img/dog-mobile@1x.png');
+        }
     }
+
 
     &__bg {
         padding: 100px 0;
@@ -27,12 +55,45 @@
         background-position: center;
         border-radius: 300px 300px 0 0;
         background-color: $carrot;
+
+        @include laptop {
+            padding: 80px 0;
+            border-radius: 200px 200px 0 0;
+            background-image: url('/img/pattern-laptop.svg');
+        }
+
+        @include tablet {
+            border-radius: 120px 120px 0 0;
+            background-image: url('/img/pattern-tablet.svg');
+        }
+
+        @include mobile {
+            padding: 50px 0;
+            border-radius: 80px 80px 0 0;
+            background-image: url('/img/pattern-mobile.svg');
+        }
     }
+
 
     &__title {
         text-align: center;
         margin-bottom: 50px;
+
+        @include laptop {
+            margin-bottom: 32px;
+            font-size: 44px;
+        }
+
+        @include tablet {}
+
+        @include mobile {
+            max-width: 320px;
+            margin: 0 auto;
+            margin-bottom: 24px;
+            font-size: 30px;
+        }
     }
+
 
     &__list {
         display: grid;
@@ -40,26 +101,92 @@
         gap: 24px;
         // либо dislay: flex;
         //      flex-basis: 417px либо 33%(100/3);
+
+        @include laptop {
+            gap: 20px;
+        }
+
+        @include tablet {
+            grid-template-columns: 1fr;
+            gap: 50px;
+        }
+
+        @include mobile {
+            gap: 32px;
+        }
     }
+
 
     &__item {
         padding-top: 268px;
         background-size: 256px 256px;
         background-position: top center;
         background-repeat: no-repeat;
+
+        @include laptop {
+            padding-top: 172px;
+            background-size: 160px 160px;
+        }
+
+        @include tablet {}
+
+        @include mobile {
+            padding-top: 86px;
+            background-size: 80px 80px;
+        }
     }
+
 
     &__item--assortiment {
         background-image: url('/img/soft-dog-house@1x.png');
+
+        @include laptop {
+            background-image: url('/img/soft-dog-house-laptop@1x.png');
+        }
+
+        @include tablet {
+            background-image: url('/img/soft-dog-house-tablet@1x.png');
+        }
+
+        @include mobile {
+            background-image: url('/img/soft-dog-house-mobile@1x.png');
+        }
     }
+
 
     &__item--quality {
         background-image: url('/img/miska@1x.png');
+
+        @include laptop {
+            background-image: url('/img/miska-laptop@1x.png');
+        }
+
+        @include tablet {
+            background-image: url('/img/miska-tablet@1x.png');
+        }
+
+        @include mobile {
+            background-image: url('/img/miska-mobile@1x.png');
+        }
     }
+
 
     &__item--person {
         background-image: url('/img/puppy@1x.png');
+
+        @include laptop {
+            background-image: url('/img/puppy-laptop@1x.png');
+        }
+
+        @include tablet {
+            background-image: url('/img/puppy-tablet@1x.png');
+        }
+
+        @include mobile {
+            background-image: url('/img/puppy-mobile@1x.png');
+        }
     }
+
 
     &__subtitle {
         width: min-content;
@@ -68,13 +195,38 @@
         font-size: 28px;
         font-weight: 700;
         text-align: center;
+
+        @include laptop {
+            font-size: 24px;
+        }
+
+        @include tablet {}
+
+        @include mobile {
+            margin-bottom: 4px;
+            font-size: 20px;
+        }
     }
+
 
     &__text {
         text-align: center;
+
+        @include laptop {
+            font-size: 20px;
+        }
+
+        @include tablet {}
+
+        @include mobile {
+            font-size: 16px;
+        }
+
     }
 
+
     &__count-box {
+        // зеленая звездочка
         position: absolute;
         top: -115px;
         left: 0;
@@ -89,12 +241,46 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
+        @include laptop {
+            top: -102px;
+            width: 257px;
+            height: 257px;
+            background-image: url('/img/star-laptop.svg');
+
+        }
+
+        @include tablet {
+            width: 201px;
+            height: 201px;
+            background-image: url('/img/star-tablet.svg');
+        }
+
+        @include mobile {
+            top: -73px;
+            width: 140px;
+            height: 140px;
+            background-image: url('/img/star-mobile.svg');
+        }
     }
+
 
     .about {
         &__count {
             font-size: 52px;
             font-weight: 700;
+
+            @include laptop {
+                font-size: 44px;
+            }
+
+            @include tablet {
+                font-size: 32px;
+            }
+
+            @include mobile {
+                font-size: 20px;
+            }
         }
 
 
@@ -102,7 +288,19 @@
             max-width: 122px;
             line-height: 1.2;
             text-align: center;
-            font-size: 24px
+            font-size: 24px;
+
+            @include laptop {
+                max-width: 102px;
+                font-size: 20px;
+            }
+
+            @include tablet {}
+
+            @include mobile {
+                max-width: 82px;
+                font-size: 16px;
+            }
         }
 
     }

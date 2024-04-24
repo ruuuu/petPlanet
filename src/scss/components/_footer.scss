@@ -1,12 +1,10 @@
 @use '../variables' as *;
+@use '../media' as *;
 
 
 .footer {
+    padding: 80px 0 32px;
     background-color: $green;
-    padding-top: 80px;
-    padding-bottom: 32px;
-    padding-left: 0;
-    padding-right: 0;
     color: $light;
     line-height: 1.4;
     background-image: url('/img/paw.svg');
@@ -14,13 +12,46 @@
     background-repeat: no-repeat;
     background-position: 59% 50px; // 100-((590/1440)*100)  590px- расстояие от левой границы до лапки, 50px это top
 
+    @include laptop {
+        padding-top: 50px;
+        background-image: url('/img/paw-laptop.svg');
+        background-size: 311px 295px;
+        background-position: 64% 80px;
+    }
+
+    @include tablet {
+        padding-top: 40px;
+        background-image: url('/img/paw-tablet.svg');
+        background-size: 199px 183px;
+        background-position: 97% 142px;
+    }
+
+    @include mobile {
+        padding-top: 30px;
+        background-image: url('/img/paw-mobile.svg');
+        background-size: 144px 136px;
+        background-position: right -24px bottom -24px;
+    }
+
+
     &__container {
         display: grid;
         grid-template-areas:
             'logo contacts'
-            'info contacts'
-        ;
+            'info contacts';
+
+        @include laptop {}
+
+        @include tablet {}
+
+        @include mobile {
+            grid-template-areas:
+                'logo'
+                'contacts'
+                'info';
+        }
     }
+
 
     &__logo {
         // грид элемент
@@ -29,17 +60,29 @@
         width: 331px;
         height: 57px;
         margin-bottom: 30px;
+
+        @include tablet {
+            width: 200px;
+            height: 35px;
+        }
     }
+
 
     &__info {
         // грид элемент
         grid-area: info;
         font-size: 16px;
+
+        @include mobile {
+            font-size: 12px;
+        }
     }
+
 
     &__copyright {
         margin-bottom: 20px;
     }
+
 
     &__text {
         margin-bottom: 10px;
@@ -50,29 +93,48 @@
         display: flex;
         align-items: center;
         gap: 10px;
-    }
 
-    &__item {
-        margin-bottom: 10px;
-        font-size: 16px;
-
-        &:last-child {
-            margin-bottom: 0;
+        @include mobile {
+            margin-bottom: 16px;
         }
     }
 
+
+    &__item {
+        font-size: 16px;
+
+        @include mobile {
+            font-size: 12px;
+        }
+
+        // &:last-child {
+        //     margin-bottom: 0;
+        // }
+    }
+
+
     &__link {}
+
 
     &__contacts {
         // грид элемент
         grid-area: contacts;
-        justify-self: end; // выравнивание по горизонтали
+        justify-self: end; // выравнивание по горизонтали относительно ячейки
         font-style: normal;
+
+        @include mobile {
+            justify-self: start;
+        }
     }
+
 
     &__email {
         display: block;
         margin-bottom: 20px;
         font-size: 24px;
+
+        @include laptop {
+            font-size: 20px;
+        }
     }
 }

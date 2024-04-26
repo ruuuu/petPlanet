@@ -16,7 +16,13 @@
         right: 0;
         width: 396px;
         height: 682px;
-        background-image: url('../../img/dog@1x.png');
+        background-image: image-set(url('/img/dog@1x.avif') type('image/avif') 1x,
+                url('/img/dog@2x.avif') type('image/avif') 2x,
+                url('/img/dog@1x.webp') type('image/webp') 1x,
+                url('/img/dog@2x.webp') type('image/webp') 2x,
+                url('/img/dog@1x.png') type('image/png') 1x,
+                url('/img/dog@2x.png') type('image/png') 2x); // для dpr:2.0(ретиновые экраны) подгрузится dog@2x.png
+
         background-repeat: no-repeat;
         background-size: contain; //  чтоб картинка не обрезалась
         z-index: -99;
@@ -142,7 +148,13 @@
 
 
     &__item--assortiment {
-        background-image: url('/img/soft-dog-house@1x.png');
+        background-image: image-set(url('/img/soft-dog-house@1x.avif') type('image/avif') 1x,
+                url('/img/soft-dog-house@2x.avif') type('image/avif') 2x,
+                url('/img/soft-dog-house@1x.webp') type('image/webp') 1x,
+                url('/img/soft-dog-house@2x.webp') type('image/webp') 2x,
+                url('/img/soft-dog-house@1x.png') type('image/png') 1x,
+                url('/img/soft-dog-house@2x.png') type('image/png') 2x);
+
 
         @include laptop {
             background-image: url('/img/soft-dog-house-laptop@1x.png');
@@ -159,7 +171,12 @@
 
 
     &__item--quality {
-        background-image: url('/img/miska@1x.png');
+        background-image: image-set(url('/img/miska@1x.avif') type('image/avif') 1x,
+                url('/img/miska@2x.avif') type('image/avif') 2x,
+                url('/img/miska@1x.webp') type('image/webp') 1x,
+                url('/img/miska@2x.webp') type('image/webp') 2x,
+                url('/img/miska@1x.png') type('image/png') 1x,
+                url('/img/miska@2x.png') type('image/png') 2x);
 
         @include laptop {
             background-image: url('/img/miska-laptop@1x.png');
@@ -176,7 +193,12 @@
 
 
     &__item--person {
-        background-image: url('/img/puppy@1x.png');
+        background-image: image-set(url('/img/puppy@1x.avif') type('image/avif') 1x,
+                url('/img/puppy@2x.avif') type('image/avif') 2x,
+                url('/img/puppy@1x.webp') type('image/webp') 1x,
+                url('/img/puppy@2x.webp') type('image/webp') 2x,
+                url('/img/puppy@1x.png') type('image/png') 1x,
+                url('/img/puppy@2x.png') type('image/png') 2x);
 
         @include laptop {
             background-image: url('/img/puppy-laptop@1x.png');

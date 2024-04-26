@@ -21,6 +21,10 @@
         background-size: contain; //  чтоб картинка не обрезалась
         z-index: -99;
 
+        @include bigscreen {
+            right: calc(50% - 840px);
+        }
+
         @include laptop {
             top: -242px;
             right: 8px;
@@ -221,7 +225,6 @@
         @include mobile {
             font-size: 16px;
         }
-
     }
 
 
@@ -241,6 +244,10 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
+        @include bigscreen {
+            left: calc(50% - 840px);
+        }
 
         @include laptop {
             top: -102px;

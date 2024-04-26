@@ -10,27 +10,27 @@
     background-image: url('/img/paw.svg');
     background-size: 375px 355px;
     background-repeat: no-repeat;
-    background-position: 59% 50px; // 100-((590/1440)*100)  590px- расстояие от левой границы до лапки, 50px это top
+    background-position: 59% 50px; // 100-((590/1440)*100)  590px- расстояие от левой границы до лапки, 50px это top. Или можно так: left 41vw bottom -75px
 
     @include laptop {
         padding-top: 50px;
         background-image: url('/img/paw-laptop.svg');
         background-size: 311px 295px;
-        background-position: 64% 80px;
+        background-position: 64% 80px; // или right 293px bottom -80px
     }
 
     @include tablet {
         padding-top: 40px;
         background-image: url('/img/paw-tablet.svg');
         background-size: 199px 183px;
-        background-position: 97% 142px;
+        background-position: 97% 142px; // или right 46px bottom -45px
     }
 
     @include mobile {
         padding-top: 30px;
         background-image: url('/img/paw-mobile.svg');
         background-size: 144px 136px;
-        background-position: right -24px bottom -24px;
+        background-position: right -30px bottom -30px;
     }
 
 

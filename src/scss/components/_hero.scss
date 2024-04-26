@@ -3,21 +3,28 @@
 
 
 .hero {
-    padding-top: 218px;
-    padding-bottom: 245px;
-    padding-left: 0;
-    padding-right: 0;
+    padding: 218px 0 245px;
     background-color: $purple;
     color: $light;
     background-image: url('/img/bg-dog@1x.png'), url('/img/pattern.svg'); //  для Vite путь будет от /img, иначе в dist не будут рабоать
     background-size: contain, cover; // для 1-ой картинки(песель) contain, для 2-ой cover(чтоб клетчатый фон  растянулась на весь экран). 
-    background-position: right bottom, center; // песель справа внизу, фоновая картинка по центру
-    background-repeat: no-repeat;
+    background-position: right bottom, center; // собачка справа внизу, фоновая картинка по центру
+    background-repeat: no-repeat, repeat;
+
+    // @include bigscreen {
+    //     background-image: url('/img/bg-dog-big.png'), url('/img/pattern.svg');
+    //     background-position: left 48vw bottom 0, center; // 50% от ширины экрана
+    //     background-size: 1800px, auto;
+    // }
 
     @include laptop {
         //  вызов миксина
         // <1140;
-        padding: 148px 0 172px;
+        //padding: 148px 0 172px;
+        padding-top: 148px;
+        padding-left: 0;
+        padding-right: 0;
+        padding-bottom: 172px;
         margin-bottom: 32px;
         background-image: url('/img/bg-dog-laptop@1x.png'), url('/img/pattern.svg');
         background-size: 655px 564px, cover;
@@ -48,12 +55,16 @@
 
         @include laptop {
             width: 588px;
+            padding-top: 50px;
         }
 
-        @include tablet {}
+        @include tablet {
+            padding-top: 40px;
+        }
 
         @include mobile {
             width: 292px;
+            padding-top: 44px;
         }
     }
 

@@ -6,6 +6,10 @@
 :root {
     --font-size: 24px; // завели переменную
 
+    @include bigscreen {
+        --font-size: 28px;
+    }
+
     @include laptop {
         --font-size: 20px;
     }

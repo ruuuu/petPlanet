@@ -1,12 +1,13 @@
 @use '../variables' as *; // импорт переменных, котрые будем использовать здесь
 @use '../media' as *;
+@use '../fonts' as *;
 
 
 .hero {
     padding: 218px 0 245px;
     background-color: $purple;
     color: $light;
-    background-image: url('/img/bg-dog@1x.png'), url('/img/pattern.svg'); //  для Vite путь будет от /img, иначе в dist не будут рабоать
+    background-image: url('/img/bg-dog@1x.png'), url('/img/pattern.svg'); //  для Vite путь будет от /img, иначе в dist(прод сборка) не будут рабоать
     background-size: contain, cover; // для 1-ой картинки(песель) contain, для 2-ой cover(чтоб клетчатый фон  растянулась на весь экран). 
     background-position: right bottom, center; // собачка справа внизу, фоновая картинка по центру
     background-repeat: no-repeat, repeat;
@@ -70,14 +71,50 @@
 
 
     &__text {
-        max-width: 420px;
+        max-width: 440px;
+        margin-bottom: 60px;
+
+        @include bigscreen {
+            max-width: 660px;
+        }
 
         @include laptop {
             max-width: 360px;
+            margin-bottom: 40px;
         }
 
         @include tablet {}
 
-        @include mobile {}
+        @include mobile {
+            margin-bottom: 20px;
+        }
+    }
+
+
+    &__store-link {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        width: max-content; //  по размеру контента
+        padding: 16px 44px 16px 24px;
+        border-radius: 40px;
+        background-color: $green;
+        font-family: $font-family;
+        font-weight: 700;
+        text-align: center;
+        color: $light;
+
+        &:after {
+            // флекс элемент
+            // стрелочка белая
+            content: '';
+            display: block;
+            width: 16px;
+            height: 16px;
+            background-image: url('/img/arrow-up.svg');
+            background-repeat: no-repeat;
+            background-size: contain; // contain-чтобы картинка не обрезалась но занимала все прстранстов
+            background-position: center;
+        }
     }
 }

@@ -7,8 +7,8 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title> Pet planet - магазин товаров для животных </title>
+    <!-- предзагрузка шрифтов: -->
     <link rel="preload" href="/fonts/onest-v6-cyrillic_latin-700.woff2" type="font/woff2" as="font" crossorigin>
-    <!-- предзагрузка шрифтов -->
     <link rel="preload" href="/fonts/onest-v6-cyrillic_latin-regular.woff2" type="font/woff2" as="font" crossorigin>
     <link rel="stylesheet" href="scss/index.scss"> <!-- так можно покдлючат тлько если есть сборщик -->
 </head>
@@ -30,6 +30,7 @@
                 <img class="hero__title" src="./img/tittle.svg" width="810" height="215"
                     alt="Товары для твоих любимцев">
                 <p class="hero__text"> Большой выбор домиков, лежанок и&nbsp;кормов для кошек и&nbsp;собак </p>
+                <a class="hero__store-link" href="/store.html">Перейти в магазин</a>
             </div>
         </section>
 
@@ -95,7 +96,8 @@
                     <fieldset class="subscribe__fieldset">
                         <input class="subscribe__input" type="email" name="email" placeholder="E-mail">
                         <button class="subscribe__button" type="submit">
-                            <span class="subscribe__button-text">Отправить</span> </button>
+                            <span class="subscribe__button-text">Отправить</span>
+                        </button>
                     </fieldset>
                 </form>
             </div>

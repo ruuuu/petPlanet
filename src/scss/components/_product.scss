@@ -1,10 +1,46 @@
+@use '../variables' as *;
+@use '../media' as *;
+@use '../fonts' as *;
+
+
 .product {
+    max-width: 420px;
+    min-height: 499px;
+    border-radius: 24px;
+    padding: 0px 16px 16px 16px;
+    background-color: $white;
+    overflow: hidden; // чтоб картинка не вываливалсь
 
-    &__image {}
+    &__image {
+        width: 100%;
+        margin-bottom: 16px;
+    }
 
-    &__title {}
+    &__title {
+        margin-bottom: 4px;
+        font-size: 28px;
+        text-align: center;
+        color: $green;
+    }
 
-    &__price {}
+    &__price {
+        text-align: center;
+        margin-bottom: 24px;
+    }
 
-    &__btn-add-cart {}
+    &__btn-add-cart {
+        width: 100%;
+        border-radius: 40px;
+        padding: 16px 24px;
+        width: 388px;
+        height: 66px;
+
+        background-color: $purple;
+        font-size: 24px;
+        line-height: 1.4;
+        text-align: center;
+        font-weight: 700;
+        color: $light;
+    }
+
 }

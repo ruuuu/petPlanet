@@ -21,15 +21,10 @@
     @include laptop {
         //  вызов миксина
         // <1140;
-        //padding: 148px 0 172px;
-        padding-top: 148px;
-        padding-left: 0;
-        padding-right: 0;
-        padding-bottom: 172px;
+        padding: 148px 0 172px;
         margin-bottom: 32px;
         background-image: url('/img/bg-dog-laptop@1x.png'), url('/img/pattern.svg');
-        background-size: 655px 564px, cover;
-
+        background-size: 655px 564px, cover; // 655px 564px - размер bg-dog-laptop@1x.png
     }
 
     @include tablet {
@@ -42,6 +37,20 @@
         margin-bottom: 16px;
         background-size: 294px 261px, cover;
         background-image: url('../../img/bg-dog-mobile@1x.png'), url('/img/pattern.svg');
+    }
+
+    &--store {
+        background-color: $green;
+        background-image: url('/img/bg-cat@1x.png'), url('/img/pattern.svg');
+        background-size: 839px, auto;
+
+        @include laptop {
+            background-size: 640px, auto;
+        }
+
+        @include tablet {
+            background-size: 100%, auto;
+        }
     }
 
 
@@ -103,6 +112,23 @@
         font-weight: 700;
         text-align: center;
         color: $light;
+        outline: 1px solid transparent;
+        transition-property: background-color, transform; // эти два свойсва плавно меняются
+        transition-duration: 0.3s, 0.2s; // для background-color 0.3s, для transform 0.2s
+        transition-timing-function: ease-in-out;
+
+        &:hover {
+            background-color: #00772f;
+        }
+
+        &:focus-visible {
+            // срабатывает когда пеерклчаемся клавишей tab
+            outline-color: $carrot;
+        }
+
+        &:active {
+            transform: scale(0.9); // при кликании кнопка уменьшатся
+        }
 
         &:after {
             // флекс элемент
@@ -115,6 +141,14 @@
             background-repeat: no-repeat;
             background-size: contain; // contain-чтобы картинка не обрезалась но занимала все прстранстов
             background-position: center;
+        }
+
+        @include laptop {
+            padding: 16px 36px;
+        }
+
+        @include mobile {
+            padding: 11px 24px;
         }
     }
 }

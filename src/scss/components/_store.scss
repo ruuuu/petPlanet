@@ -42,7 +42,6 @@
             transform: scaleX(0);
             transition: transform 0.3s ease-in-out; // анимируем свойство transform
             background-color: $green;
-
         }
 
         &--active::after {
@@ -96,7 +95,9 @@
         }
     }
 
-    &__item {}
+    &__item {
+        display: flex;
+    }
 
     &__product {}
 }

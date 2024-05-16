@@ -4,6 +4,8 @@
 
 
 .product {
+    display: flex;
+    flex-direction: column;
     max-width: 420px;
     min-height: 499px;
     border-radius: 24px;
@@ -11,16 +13,36 @@
     background-color: $white;
     overflow: hidden; // чтоб картинка не вываливалсь
 
+    @include tablet {
+        min-height: 460px;
+    }
+
+    @include mobile {
+        min-height: 400px;
+    }
+
     &__image {
         width: 100%;
         margin-bottom: 16px;
     }
 
     &__title {
+        flex-grow: 1; // будет знимать все свобоое пространтсов
         margin-bottom: 4px;
+        padding: 0 10px;
+        max-width: 300px;
+        align-self: center;
         font-size: 28px;
         text-align: center;
         color: $green;
+
+        @include tablet {
+            font-size: 24px;
+        }
+
+        @include mobile {
+            font-size: 20px;
+        }
     }
 
     &__price {

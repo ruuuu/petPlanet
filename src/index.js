@@ -1,7 +1,14 @@
+const API_URL='https://burly-inquisitive-pisces.glitch.me'; // сервер выложили на glitch
 const buttons = document.querySelectorAll('.store__category-button');
+const productList = document.querySelector('.store__list');
+const cartButton = document.querySelector('.store__cart-button');
+const modalOverlay = document.querySelector('.modal__overlay');
 
 
-const changeActiveBtn = (evt) => {
+
+
+
+const changeActiveBtn = (evt) => { // переключение кнопок категорий
     const target = evt.target; // нажатая кнопка
 
     buttons.forEach((button) => {
@@ -17,11 +24,6 @@ buttons.forEach((button) => {
     button.addEventListener('click', changeActiveBtn);
 });
 
-
-
-const API_URL='https://burly-inquisitive-pisces.glitch.me'; // сервер выложили на glitch
-
-const productList = document.querySelector('.store__list');
 
 
 const createProductCard = (product) => {
@@ -50,7 +52,6 @@ const renderProducts = (products) => {
         const productCard = createProductCard(product);
         productList.append(productCard);
     }); 
-
 }
 
 
@@ -72,8 +73,12 @@ const fetchProductByCategory = async (category) => {
     catch(error){
         console.error(`Ошибка запроса товаров: ${error}`);
     }
+}
+
+
+cartButton.addEventListener = () => {
 
 }
 
 
-fetchProductByCategory('Домики')
+fetchProductByCategory('Домики');

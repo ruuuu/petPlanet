@@ -6,8 +6,10 @@ const buttons = document.querySelectorAll('.store__category-button');
 const productList = document.querySelector('.store__list');
 const cartButton = document.querySelector('.store__cart-button');
 const modalOverlay = document.querySelector('.modal-overlay');
-const modalCartItems = document.querySelector('.modal__cart-items');
+const сartItemsList = document.querySelector('.modal__cart-items'); // ul
 const modalCloseButton = document.querySelector('.modal-overlay__close-button');
+const cartCount = cartButton.querySelector('.store__cart-count');
+
 
 
 //                      деструктурировали объект product
@@ -18,7 +20,7 @@ const createProductCard = ({ photoUrl, name, price }) => {
     productCard.innerHTML = `
         <article class="store__product product">
             <img class="product__image" src="${API_URL}${photoUrl}" width="388" height="261"  alt="${name}">
-            <h3 class="product__title"> ${name} </h3>
+            <h3 class="product__title">${name}</h3>
             <p class="product__price"> ${price}&nbsp;₽ </p>
             <button class="product__btn-add-cart"> Заказать </button>
         </article>
@@ -76,6 +78,7 @@ const changeCategory = (evt) => { // переключение кнопок ка�
 };
 
 
+
 buttons.forEach((button) => {
     button.addEventListener('click', changeCategory);
 
@@ -85,20 +88,58 @@ buttons.forEach((button) => {
 });
 
 
+
+const renderCartItems = () => {
+
+    сartItemsList.textContent = ''; 
+    const cartItems = JSON.parse(localStorage.getItem('cartItems') || "[]"); // товары Корзины [{},{},{}]
+
+    cartItems.forEach((cartItem) => {
+        const li = document.createElement('li');
+        li.textContent = cartItem;
+        сartItemsList.append(li)
+    });
+{/* <li class="modal__cart-item">
+                        <img src="" alt="">
+                        <p class="title"></p>
+                        <div class="controller">
+                            <button>-</button>
+                            <span></span>
+                            <button>+</button>
+                        </div>
+                        <p class="price">7200 ₽</p>
+                    </li> */}
+
+
+};
+
+
 cartButton.addEventListener('click', () => {
 
     modalOverlay.style.display = 'flex';
+    renderCartItems(); // отрисует товары Корзины
 });
 
 
-//                                либо { target }
+
+//                                   либо { target }
 modalOverlay.addEventListener('click', (evt) => {
     const target = evt.target;
     //console.log('target ', target)
+
     if(target === modalOverlay || target.closest('.modal-overlay__close-button')){ // closest: если у target или  у его родителя есть указанный класс, то вернет этот элемент. Если внутри кнопки есть svg, span, используетс closest()  
         modalOverlay.style.display = 'none';
     } 
 });
+
+
+
+const updatCartCount = () => {
+
+  const cartItems = JSON.parse(localStorage.getItem('cartItems') || "[]");
+  cartCount.textContent = cartItems.length;
+};
+
 
 
 // товары Корзины хранятся в LocalStorage
@@ -110,27 +151,24 @@ const addToCart = (productName) => {
     cartItems.push(productName)
     localStorage.setItem('cartItems', JSON.stringify(cartItems));  //  JSON.stringify превраащет в строку
 
-    //updatCartCount();
+    updatCartCount();
 };
 
 
-productList.addEventListener('click', (evt) => {
-    const target = evt.target;
-    console.log('target ', target)
 
+productList.addEventListener('click', (evt) => { // событие навешиваем не на кнопку Заказать,  а на весь список(это делегирование)
+    const target = evt.target;
+   
     if(target.closest('.product__btn-add-cart')){   //  вернет элемент(кнопку Заказать)
         const productCard = target.closest('.store__product');
-        console.log('productCard ', productCard)
-        const productName = productCard.querySelector('.product__title')
-        addToCart(productName);
+        const productName = productCard.querySelector('.product__title');
+        addToCart(productName.textContent);
     }
-
-
 });
 
-addToCart('Домики');
 
 
+updatCartCount(); 
  
 
 

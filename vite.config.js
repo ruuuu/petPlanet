@@ -1,12 +1,20 @@
 import { defineConfig } from 'vite';
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
+import { resolve } from 'path';  // path -билбиотека Node js, resolve() функция
+
 
 
 export default defineConfig({
   root: './src',
-  publicDir: '../public',
+  publicDir: '../public', // относительно src
   build: {
     outDir: '../dist',
+    rollupOptions: {
+        input: { // если в проекте больше одного html файла
+            main: resolve(__dirname, './src/index.html'),
+            store: resolve(__dirname, './src/store.html')
+        }
+    }
  },
  plugins: [
     ViteImageOptimizer({

@@ -193,19 +193,75 @@
     <div class="modal-overlay">
         <div class="modal">
             <div class="modal__content">
-                <h2> Корзина </h2>
+                <h2 class="modal__title"> Корзина </h2>
                 <ul class="modal__cart-items">
-                    <!-- <li class="modal__cart-item">
-                        <img src="" alt="">
-                        <p class="title"></p>
-                        <div class="controller">
-                            <button>-</button>
-                            <span></span>
-                            <button>+</button>
+                    <li class="modal__cart-item">
+                        <img class="modal__cart-item-image" src="img/store1.jpg" alt="">
+
+                        <h3 class="title">Домик-конус для питомцев</h3>
+
+                        <div class="modal__cart-item-count">
+                            <button class="modal__minus">-</button>
+                            <span class="modal__count">1</span>
+                            <button class="modal__plus">+</button>
                         </div>
-                        <p class="price">7200 ₽</p>
-                    </li> -->
+
+                        <p class="modal__cart-item-price">7200&nbsp;₽</p>
+                    </li>
+
+                    <li class="modal__cart-item">
+                        <img class="modal__cart-item-image" src="img/store1.jpg" alt="">
+
+                        <h3 class="title">Домик-конус для питомцев</h3>
+
+                        <div class="modal__cart-item-count">
+                            <button class="modal__minus">-</button>
+                            <span class="modal__count">1</span>
+                            <button class="modal__plus">+</button>
+                        </div>
+
+                        <p class="modal__cart-item-price">7200&nbsp;₽</p>
+                    </li>
+
+                    <li class="modal__cart-item">
+                        <img class="modal__cart-item-image" src="img/store1.jpg" alt="">
+
+                        <h3 class="title">Домик-конус для питомцев</h3>
+
+                        <div class="modal__cart-item-count">
+                            <button class="modal__minus">-</button>
+                            <span class="modal__count">1</span>
+                            <button class="modal__plus">+</button>
+                        </div>
+
+                        <p class="modal__cart-item-price">7200&nbsp;₽</p>
+                    </li>
                 </ul>
+
+                <form>
+                    <fieldset class="modal__cart-fieldset">
+                        <legend class="modal__cart-legend">Самовывоз из магазина:</legend>
+                        <label class="modal__radio radio">
+                            ул. Адамавая 45/1
+                            <input class="radio__input" type="radio" name="store" value="1" checked>
+                        </label>
+
+                        <label class="modal__radio radio">
+                            ул. Вишневая 75
+                            <input class="radio__input" type="radio" name="store" value="2">
+                        </label>
+
+                        <label class="modal__radio radio">
+                            ул. Ленина 15
+                            <input class="radio__input" type="radio" name="store" value="3">
+                        </label>
+                    </fieldset>
+
+                    <div class="modal__cart-footer">
+                        <button type="submit">Заказать</button>
+                        <p class="modal__cart-price">12900&nbsp;Р</p>
+                    </div>
+                </form>
             </div>
         </div>
         <button class="modal-overlay__close-button">&times;</button>

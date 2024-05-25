@@ -91,13 +91,13 @@ buttons.forEach((button) => {
 
 const renderCartItems = () => {
 
-    сartItemsList.textContent = ''; 
+    //сartItemsList.textContent = ''; 
     const cartItems = JSON.parse(localStorage.getItem('cartItems') || "[]"); // товары Корзины [{},{},{}]
 
     cartItems.forEach((cartItem) => {
         const li = document.createElement('li');
         li.textContent = cartItem;
-        сartItemsList.append(li)
+        //сartItemsList.append(li)
     });
 {/* <li class="modal__cart-item">
                         <img src="" alt="">
@@ -117,7 +117,7 @@ const renderCartItems = () => {
 cartButton.addEventListener('click', () => {
 
     modalOverlay.style.display = 'flex';
-    renderCartItems(); // отрисует товары Корзины
+   // renderCartItems(); // отрисует товары Корзины
 });
 
 
@@ -148,10 +148,10 @@ const addToCart = (productName) => {
     const cartItems = JSON.parse(localStorage.getItem('cartItems') || "[]");  // парсим когда берем из localStorage
     // console.log(cartItem)
 
-    cartItems.push(productName)
+    //cartItems.push(productName)
     localStorage.setItem('cartItems', JSON.stringify(cartItems));  //  JSON.stringify превраащет в строку
 
-    updatCartCount();
+    //updatCartCount();
 };
 
 

@@ -1,5 +1,7 @@
 .modal-overlay {
     position: fixed;
+    overflow-y: auto; // появится вертик сроклл если надо
+    padding: 20px 0;
     z-index: 999;
     // растянется на всю ширину:
     top: 0;
@@ -7,12 +9,12 @@
     bottom: 0;
     right: 0;
     display: none; //flex
-    justify-content: center;
-    align-items: center;
+    // justify-content: center;
+    // align-items: center;
     background-color: rgba(0, 0, 0, 0.7);
 
     &__close-button {
-        position: absolute;
+        position: fixed; // absolute
         top: 12px;
         right: 12px;
         color: #fff;
@@ -20,23 +22,45 @@
     }
 }
 
+
+
 .modal {
     width: 80vw; // 80% от рамзера экрана
     max-width: 600px;
+    margin: auto;
     padding: 20px;
     border-radius: 8px;
     background-color: #fff;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
 
+
     &__content {}
 
+    &__title {}
+
+    &__cart-items {}
+
     &__cart-item {}
+
+    &__cart-item-image {}
+
+    &__cart-item-count {}
+
+    &__minus {}
+
+    &__count {}
+
+    &__plus {}
+
+    &__cart-item-price {}
+
+    &__cart-fieldset {}
+
+    &__cart-legend {}
+
+    &__radio {}
+
+    &__cart-footer {}
+
+    &__cart-price {}
 }
-
-.modal__cart-items {}
-
-.title {}
-
-.controller {}
-
-.price {}

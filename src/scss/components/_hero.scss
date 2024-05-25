@@ -8,7 +8,7 @@
     background-color: $purple;
     color: $light;
     background-image: url('/img/bg-dog@1x.png'), url('/img/pattern.svg'); //  для Vite путь будет от /img, иначе в dist(прод сборка) не будут рабоать
-    background-size: contain, cover; // для 1-ой картинки(песель) contain, для 2-ой cover(чтоб клетчатый фон  растянулась на весь экран). 
+    background-size: contain, cover; // для 1-ой картинки(собака) contain, для 2-ой cover(чтоб клетчатый фон  растянулась на весь экран). 
     background-position: right bottom, center; // собачка справа внизу, фоновая картинка по центру
     background-repeat: no-repeat, repeat;
 
@@ -29,14 +29,14 @@
 
     @include tablet {
         padding: 108px 0 461px;
-        background-image: url('../../img/bg-dog-tablet@1x.png'), url('/img/pattern.svg');
+        background-image: url('/img/bg-dog-tablet@1x.png'), url('/img/pattern.svg');
     }
 
     @include mobile {
         padding: 100px 0 284px;
         margin-bottom: 16px;
         background-size: 294px 261px, cover;
-        background-image: url('../../img/bg-dog-mobile@1x.png'), url('/img/pattern.svg');
+        background-image: url('/img/bg-dog-mobile@1x.png'), url('/img/pattern.svg');
     }
 
     &--store {

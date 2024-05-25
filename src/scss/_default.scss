@@ -39,7 +39,8 @@ img,
 svg {
     display: block; // чтоб под  картинкой не было отсутпа
     max-width: 100%; // чтоб картинки не выпадали из родителя
-    height: auto;
+    height: auto; // сохранеят пропорции
+    // object-fit: contain;
 }
 
 svg {

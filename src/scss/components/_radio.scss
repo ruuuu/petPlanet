@@ -1,4 +1,53 @@
-.radio {
+@use '../variables' as *;
+@use '../media' as *;
+@use '../fonts' as *;
 
-    &__input {}
+
+
+.radio {
+    // label
+    position: relative;
+    display: block;
+    padding-right: 16px;
+    cursor: pointer;
+
+    &__input {
+        position: absolute;
+        right: 0;
+        appearance: none;
+        top: 50%; // по центру, 50% от родителя(.radio)
+        transform: translateY(-50%); // вернем на место
+        width: 12px;
+        height: 12px;
+        border-radius: 50%; // скруглим
+
+
+        &::before {
+            //псевдоэлемент- кружочек в радиобаттоне
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: block;
+            border: 1px solid $green;
+            background-color: transparent;
+            border-radius: 50%; // скруглим
+        }
+
+        &:checked::before {
+            // нажатый радиобаттон
+            background-color: $green;
+        }
+
+        &:focus-visible {
+            outline: 1px solid $green;
+        }
+
+        &:hover {
+            background-color: greenyellow;
+        }
+
+    }
 }

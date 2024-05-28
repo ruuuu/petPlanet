@@ -91,7 +91,7 @@ buttons.forEach((button) => {
 
 const renderCartItems = () => {
 
-    //сartItemsList.textContent = ''; 
+    сartItemsList.textContent = ''; 
     const cartItems = JSON.parse(localStorage.getItem('cartItems') || "[]"); // товары Корзины [{},{},{}]
 
     cartItems.forEach((cartItem) => {
@@ -109,8 +109,6 @@ const renderCartItems = () => {
                         </div>
                         <p class="price">7200 ₽</p>
                     </li> */}
-
-
 };
 
 

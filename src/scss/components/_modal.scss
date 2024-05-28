@@ -151,9 +151,32 @@
         font-weight: 700;
     }
 
-    &__radio {}
+    &__radio {
+        display: block;
 
-    &__cart-footer {}
+        font-size: 16px;
+    }
 
-    &__cart-price {}
+    &__cart-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__cart-button {
+        padding: 12px 24px;
+        border-radius: 40px;
+        background-color: $purple;
+        font-weight: 700;
+        font-size: 16px;
+        text-align: center;
+        color: $light;
+
+    }
+
+    &__cart-price {
+        font-weight: 700;
+        font-size: 16px;
+        color: $purple;
+    }
 }

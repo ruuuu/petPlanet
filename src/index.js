@@ -13,7 +13,7 @@ const cartCount = cartButton.querySelector('.store__cart-count');
 
 
 //                      деструктурировали объект product
-const createProductCard = ({ photoUrl, name, price }) => {
+const createProductCard = ({ photoUrl, name, price, id }) => {
 
     const productCard = document.createElement('li');
     productCard.classList.add('store__item');
@@ -22,12 +22,12 @@ const createProductCard = ({ photoUrl, name, price }) => {
             <img class="product__image" src="${API_URL}${photoUrl}" width="388" height="261"  alt="${name}">
             <h3 class="product__title">${name}</h3>
             <p class="product__price"> ${price}&nbsp;₽ </p>
-            <button class="product__btn-add-cart"> Заказать </button>
+            <button class="product__btn-add-cart" data-id="${id}"> Заказать </button> <!-- добавили кнопке data атрибут -->
         </article>
     `
     // console.log('productCard ', productCard)
     return productCard;
-}
+};
 
 
 
@@ -39,7 +39,7 @@ const renderProducts = (products) => {
         const productCard = createProductCard(product);
         productList.append(productCard);
     }); 
-}
+};
 
 
 
@@ -59,7 +59,26 @@ const fetchProductByCategory = async (category) => {
     catch(error){
         console.error(`Ошибка запроса товаров: ${error}`);
     }
-}
+};
+
+
+const fetchCartItems = async (ids) => {
+
+    try{
+        const response = await fetch(`${API_URL}/api/products/list/${ids.join(",")}`);  // join(",") из массива делаем строку с рзделителем запятая
+        
+        if(!response.ok){
+            throw new Error(response.status);
+        }
+
+        const products = await response.json();
+        return  products; // [ {id, name, price, photoUrl}, {} ]
+    }
+    catch(error){
+        console.error(`Ошибка запроса товаров: ${error}`);
+        return [];
+    }
+};
 
 
 
@@ -89,38 +108,71 @@ buttons.forEach((button) => {
 
 
 
-const renderCartItems = () => {
-
-    сartItemsList.textContent = ''; 
-    const cartItems = JSON.parse(localStorage.getItem('cartItems') || "[]"); // товары Корзины [{},{},{}]
-
-    cartItems.forEach((cartItem) => {
+const renderCartItems = async() => { // отрисовка товаров Корзины
+ 
+    сartItemsList.textContent = '';  // очистка перед наполненем
+    const cartItems = JSON.parse(localStorage.getItem('cartItems') || "[]");            // товары Корзины [{id, count},{},{}]
+    const products = JSON.parse(localStorage.getItem('cartProductDetails') || "[]");            // [{ id, categories, price, photoUrl }, {}]. Если товар из корины удляем, то в products он останется
+    
+    //                      деструктурировали объект
+    products.forEach(({ photoUrl, name, price, id }) => {
+        const cartItem = cartItems.find((item) => cartItems.id === parseInt(id));                 // вернет элемент котрый подхоит по условию
+        console.log('cartItem ', cartItem)
+        
+        if(!cartItem){
+            return; // выход из метода
+        }
+        
         const li = document.createElement('li');
-        li.textContent = cartItem;
-        //сartItemsList.append(li)
-    });
-{/* <li class="modal__cart-item">
-                        <img src="" alt="">
-                        <p class="title"></p>
-                        <div class="controller">
-                            <button>-</button>
-                            <span></span>
-                            <button>+</button>
-                        </div>
-                        <p class="price">7200 ₽</p>
-                    </li> */}
+        li.classList.add('modal__cart-item');
+
+        li.innerHTML = `
+            <img class="modal__cart-item-image" src="${API_URL}${photoUrl}" alt="${name}">
+
+            <h3 class="title">${name}</h3>
+
+            <div class="modal__cart-item-count">
+                <button class="modal__minus" data-id=${id}>-</button>
+                <span class="modal__count">${cartItem.count}</span>
+                <button class="modal__plus" data-id=${id}>+</button>
+            </div>
+
+            <p class="modal__cart-item-price">${price * cartItem.count}&nbsp;₽</p>
+        `;
+
+        сartItemsList.append(li);
+    })
+
 };
 
 
-cartButton.addEventListener('click', () => {
+cartButton.addEventListener('click', async() => { // нажатие на иконку корзины
 
     modalOverlay.style.display = 'flex';
-   // renderCartItems(); // отрисует товары Корзины
+
+    const cartItems = JSON.parse(localStorage.getItem('cartItems') || "[]");                // товары Корзины [{id, count},{},{}]
+
+    const ids = cartItems.map((item) => {           // вернет [id, id, id] 
+        return item.id;
+    });
+
+    if(ids.length === 0){
+        const listItem = document.createElement('li');
+        listItem.textContent = 'Корзина пуста';
+        сartItemsList.append(listItem);
+        return;  // выход из метода
+    }
+    else{
+        const products = await fetchCartItems(ids); // запрос на сервер, товары Корзины
+        console.log('products ', products)  // [ {}, {} ]
+        localStorage.setItem('cartProductDetails', JSON.stringify(products)); // при удалении товара, он из cartItems удалится, а из products нет
+        renderCartItems();
+    }
 });
 
 
 
-//                                   либо { target }
+// закрытие модалки:                 либо { target }
 modalOverlay.addEventListener('click', (evt) => {
     const target = evt.target;
     //console.log('target ', target)
@@ -141,26 +193,34 @@ const updatCartCount = () => {
 
 
 // товары Корзины хранятся в LocalStorage
-const addToCart = (productName) => { 
+const addToCart = (productId) => { 
    
-    const cartItems = JSON.parse(localStorage.getItem('cartItems') || "[]");  // парсим когда берем из localStorage
-    // console.log(cartItem)
+    const cartItems = JSON.parse(localStorage.getItem('cartItems') || "[]");  // превращаем из строки в json когда берем из localStorage
+    //console.log(cartItems)
 
-    //cartItems.push(productName)
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));  //  JSON.stringify превраащет в строку
+    const item = cartItems.find((item) => item.id === productId);  // вернет элемент
+    //console.log('item ', item)
 
-    //updatCartCount();
+    if(item){
+        item.count++;
+    }
+    else{
+        cartItems.push({id: productId, count: 1});
+    }
+
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));  //  JSON.stringify превраащет в строку, обновляем localStorage
+    updatCartCount();
 };
 
 
-
+//                                     { target } - деструкририровали evt
 productList.addEventListener('click', (evt) => { // событие навешиваем не на кнопку Заказать,  а на весь список(это делегирование)
     const target = evt.target;
+    //console.log('evt ', evt)
    
-    if(target.closest('.product__btn-add-cart')){   //  вернет элемент(кнопку Заказать)
-        const productCard = target.closest('.store__product');
-        const productName = productCard.querySelector('.product__title');
-        addToCart(productName.textContent);
+    if(target.closest('.product__btn-add-cart')){   // если у target есть указанный класс, то вернет элемент(кнопку Заказать)
+        const productId = parseInt(target.dataset.id); // привели строку к числу
+        addToCart(productId);
     }
 });
 

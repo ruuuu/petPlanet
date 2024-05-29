@@ -9,6 +9,8 @@ const modalOverlay = document.querySelector('.modal-overlay');
 const сartItemsList = document.querySelector('.modal__cart-items'); // ul
 const modalCloseButton = document.querySelector('.modal-overlay__close-button');
 const cartCount = cartButton.querySelector('.store__cart-count');
+const totalPriceElem = document.querySelector('.modal__cart-price');
+const cartForm = document.querySelector('.modal__cart-form');
 
 
 
@@ -62,6 +64,7 @@ const fetchProductByCategory = async (category) => {
 };
 
 
+
 const fetchCartItems = async (ids) => {
 
     try{
@@ -108,15 +111,34 @@ buttons.forEach((button) => {
 
 
 
+const calculateTotalPrice = (cartItems, products) => {
+
+    let total = 0;
+    products.forEach(({ photoUrl, name, price, id }) => {
+
+        const cartItem = cartItems.find((item) => item.id === id);  
+
+         total = cartItems.reduce((acc, item) => {  // [ {id, count}, {} ]
+            return acc + price * item.count;
+        }, 0); // acc = 0
+
+    });
+
+    return total;
+};
+
+
+
+
 const renderCartItems = async() => { // отрисовка товаров Корзины
  
     сartItemsList.textContent = '';  // очистка перед наполненем
     const cartItems = JSON.parse(localStorage.getItem('cartItems') || "[]");            // товары Корзины [{id, count},{},{}]
-    const products = JSON.parse(localStorage.getItem('cartProductDetails') || "[]");            // [{ id, categories, price, photoUrl }, {}]. Если товар из корины удляем, то в products он останется
+    const products = JSON.parse(localStorage.getItem('cartProductDetails') || "[]");            // тоже товары корзины[{ id, categories, price, photoUrl }, {}]. Если товар из корины удляем, то в products он останется
     
     //                      деструктурировали объект
     products.forEach(({ photoUrl, name, price, id }) => {
-        const cartItem = cartItems.find((item) => cartItems.id === parseInt(id));                 // вернет элемент котрый подхоит по условию
+        const cartItem = cartItems.find((item) => item.id === id);                 // вернет элемент котрый подхоит по условию
         console.log('cartItem ', cartItem)
         
         if(!cartItem){
@@ -132,18 +154,22 @@ const renderCartItems = async() => { // отрисовка товаров Кор
             <h3 class="title">${name}</h3>
 
             <div class="modal__cart-item-count">
-                <button class="modal__minus" data-id=${id}>-</button>
+                <button class="modal__btn modal__minus" data-id=${id}>-</button>
                 <span class="modal__count">${cartItem.count}</span>
-                <button class="modal__plus" data-id=${id}>+</button>
+                <button class="modal__btn modal__plus" data-id=${id}>+</button>
             </div>
 
             <p class="modal__cart-item-price">${price * cartItem.count}&nbsp;₽</p>
         `;
 
         сartItemsList.append(li);
-    })
+    });
+
+    const totalPrice = calculateTotalPrice(cartItems, products);
+    totalPriceElem.innerHTML = `${totalPrice}&nbsp;₽`;  // не textContent,  с ним не будет рабоать &nbsp;
 
 };
+
 
 
 cartButton.addEventListener('click', async() => { // нажатие на иконку корзины
@@ -167,6 +193,8 @@ cartButton.addEventListener('click', async() => { // нажатие на ико�
         console.log('products ', products)  // [ {}, {} ]
         localStorage.setItem('cartProductDetails', JSON.stringify(products)); // при удалении товара, он из cartItems удалится, а из products нет
         renderCartItems();
+
+        updatCartCount();
     }
 });
 
@@ -219,7 +247,7 @@ productList.addEventListener('click', (evt) => { // событие навеши�
     //console.log('evt ', evt)
    
     if(target.closest('.product__btn-add-cart')){   // если у target есть указанный класс, то вернет элемент(кнопку Заказать)
-        const productId = parseInt(target.dataset.id); // привели строку к числу
+        const productId = target.dataset.id;  // извлекаем data-id у нажатой кнопки(target)
         addToCart(productId);
     }
 });

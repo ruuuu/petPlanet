@@ -1,0 +1,28 @@
+@use '../variables' as *;
+@use '../fonts' as *;
+@use '../media' as *;
+
+
+.order-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    z-index: 1000; //  чтоб поверх модалки было
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(black, 0.4);
+    text-align: center;
+    background-color: $white;
+
+    &__text {
+        margin-bottom: 20px;
+    }
+
+    &__close-button {
+        padding: 10px 20px;
+        border-radius: 6px;
+        background-color: $carrot;
+        color: $light;
+    }
+}

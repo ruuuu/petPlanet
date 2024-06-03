@@ -302,6 +302,7 @@ const updateCartItem = (productId, change) => { // change = 1 или -1
 });
 
 
+
 // отправка офрмы заказа:
 const submitOrder = async(evt) => {
 

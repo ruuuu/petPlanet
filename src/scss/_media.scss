@@ -3,7 +3,7 @@ $laptop: 1140px;
 $tablet: 940px;
 $mobile: 520px;
 
-// миксины
+// миксины;
 
 @mixin bigscreen {
     @media (min-width: $bigscreen) {

@@ -4,7 +4,7 @@ import { calculateTotalPrice } from "./cart.js";
 
 // работа с dom элементами:
 const productList = document.querySelector('.store__list');
-const сartItemsList = document.querySelector('.modal__cart-items'); // ul
+//const сartItemsList = document.querySelector('.modal__cart-items'); // ul
 const totalPriceElem = document.querySelector('.modal__cart-price');
 
 
@@ -65,14 +65,14 @@ export const renderProducts = (products) => {
 
 
 // отрисовка товаров Корзины:
-export const renderCartItems = async() => { 
+export const renderCartItems = async(сartItemsList, cartItems, products) => { 
  
     сartItemsList.textContent = '';  // очистка перед наполненем
-    const cartItems = JSON.parse(localStorage.getItem('cartItems') || "[]");            // товары Корзины [{id, count},{},{}]
-    const products = JSON.parse(localStorage.getItem('cartProductDetails') || "[]");            // тоже товары корзины[{ id, categories, price, photoUrl }, {}]. Если товар из корины удляем, то в products он останется
+    // const cartItems = JSON.parse(localStorage.getItem('cartItems') || "[]");            // товары Корзины [{id, count},{},{}]
+    // const products = JSON.parse(localStorage.getItem('cartProductDetails') || "[]");            // тоже товары корзины[{ id, categories, price, photoUrl }, {}]. Если товар из корины удляем, то в products он останется
     
     //                      деструктурировали объект
-    products.forEach(({ photoUrl, name, price, id }) => {
+    products.forEach(({ photoUrl, name, price, id }) => {  // 
         const cartItem = cartItems.find((item) => item.id === id);                 // вернет элемент котрый подхоит по условию
         //console.log('cartItem ', cartItem)
         
@@ -100,6 +100,5 @@ export const renderCartItems = async() => {
         сartItemsList.append(li);
     });
 
-    const totalPrice = calculateTotalPrice(cartItems, products);
-    totalPriceElem.innerHTML = `${totalPrice}&nbsp;₽`;  // не textContent,  с ним не будет рабоать &nbsp;
+    
 };

@@ -76,13 +76,19 @@ cartButton.addEventListener('click', async() => { // нажатие на ико�
         сartItemsList.append(listItem);
         return;  // выход из метода
     }
-    else{
+
         const products = await fetchCartItems(ids); // запрос на сервер, товары Корзины
         //console.log('products ', products)  // [ {}, {} ]
+
         localStorage.setItem('cartProductDetails', JSON.stringify(products)); // при удалении товара, он из cartItems удалится, а из products нет
-        renderCartItems();
+        
         updatCartCount();
-    }
+
+        renderCartItems(сartItemsList, cartItems, products);
+
+        const totalPrice = calculateTotalPrice(cartItems, products);
+
+        totalPriceElem.innerHTML = `${totalPrice}&nbsp;₽`;  // не textContent,  с ним не будет рабоать &nbsp;
 });
 
 

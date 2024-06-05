@@ -2,66 +2,97 @@ export const API_URL = "https://burly-inquisitive-pisces.glitch.me"; // серв
 // const API_URL = "https://sharp-torpid-prune.glitch.me";
 
 
-export const fetchProductByCategory = async (category) => {
+const fetchData = async(endpoint, option = {}) => {
 
     try{
-        const response = await fetch(`${API_URL}/api/products/category/${category}`);
+        const response = await fetch(`${API_URL}${endpoint}`, option);
 
         if(!response.ok){
             throw new Error(response.status);
         }
 
-        const products = await response.json();
-      
-        return products;  // [{}, {}]
+        return await response.json();
     }
     catch(error){
-        console.error(`Ошибка запроса товаров: ${error}`);
+        console.error(`Ошибка ${error}`)
     }
 };
 
 
 
-export const fetchCartItems = async (ids) => {
+//                                  async
+export const fetchProductByCategory = (category) => {
 
-    try{
-        const response = await fetch(`${API_URL}/api/products/list/${ids.join(",")}`);  // join(",") из массива делаем строку с рзделителем запятая
+    return fetchData(`/api/products/category/${category}`);
+
+    // try{
+    //     const response = await fetch(`${API_URL}/api/products/category/${category}`);
+
+    //     if(!response.ok){
+    //         throw new Error(response.status);
+    //     }
+
+    //     const products = await response.json();
+      
+    //     return products;  // [{}, {}]
+    // }
+    // catch(error){
+    //     console.error(`Ошибка запроса товаров: ${error}`);
+    // }
+};
+
+
+
+export const fetchCartItems = (ids) => {
+
+    return fetchData(`/api/products/list/${ids.join(",")}`);
+
+    // try{
+    //     const response = await fetch(`${API_URL}/api/products/list/${ids.join(",")}`);  // join(",") из массива делаем строку с рзделителем запятая
         
-        if(!response.ok){
-            throw new Error(response.status);
-        }
+    //     if(!response.ok){
+    //         throw new Error(response.status);
+    //     }
 
-        const products = await response.json();
-        return  products; // [ {id, name, price, photoUrl}, {} ]
-    }
-    catch(error){
-        console.error(`Ошибка запроса товаров: ${error}`);
-        return [];
-    }
+    //     const products = await response.json();
+    //     return  products; // [ {id, name, price, photoUrl}, {} ]
+    // }
+    // catch(error){
+    //     console.error(`Ошибка запроса товаров: ${error}`);
+    //     return [];
+    // }
 };
 
 
 
 
 // отправка формы заказа:
-export const submitOrder = async(orderAdress, products ) => {
+export const submitOrder = (orderAdress, products ) => {
 
-    try{
-        const response = await fetch(`${API_URL}/api/orders`, {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ "storeId": orderAdress, "products": products })  
-        });  
+   return fetchData(`/api/orders`, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ "storeId": orderAdress, "products": products })
+    });
+
+    // try{
+    //     const response = await fetch(`${API_URL}/api/orders`, {
+    //         method: 'POST',
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify({ "storeId": orderAdress, "products": products })  
+    //     });  
         
-        if(!response.ok){
-            throw new Error(response.status);
-        }
+    //     if(!response.ok){
+    //         throw new Error(response.status);
+    //     }
 
-        return await response.json(); 
-    }
-    catch(error){
-        console.error(`Ошибка отправки запроса: ${error}`);
-    }
+    //     return await response.json(); 
+    // }
+    // catch(error){
+    //     console.error(`Ошибка отправки запроса: ${error}`);
+    // }
 };

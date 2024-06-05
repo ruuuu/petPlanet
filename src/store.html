@@ -56,7 +56,8 @@
                         </li>
                     </ul>
 
-                    <button class="store__cart-button">
+                    <button class="store__cart-button"
+                        aria-label="по нажатию откроется корзина"><!-- aria-label нужен для доступности(для слепых людей) -->
                         <span class="store__cart-count"> 0 </span>
                         <svg class="store__cart-icon" width="28" height="28" viewBox="0 0 28 28" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -155,6 +156,7 @@
                 <ul class="footer__list">
                     <li class="footer__item">
                         <a class="footer__link" href="#" aria-label="переход в телеграмм Petplanet">
+                            <!-- aria-label для доступности нужен -->
                             <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -201,9 +203,9 @@
                         <h3 class="modal__cart-item-title">Домик-конус для питомцев</h3>
 
                         <div class="modal__cart-item-count">
-                            <button class="modal__btn modal__minus" data-id="">-</button>
+                            <button class="modal__btn modal__minus" data-id="" aria-label="кнопка минус-уменьшение числа товара">-</button>
                             <span class="modal__count">1</span>
-                            <button class="modal__btn modal__plus" data-id="">+</button>
+                            <button class="modal__btn modal__plus  aria-label="кнопка плюс-увеличение числа товара" data-id="">+</button>
                         </div>
 
                         <p class="modal__cart-item-price">7200&nbsp;₽</p>

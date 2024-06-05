@@ -89,9 +89,9 @@ export const renderCartItems = async(сartItemsList, cartItems, products) => {
             <h3 class="title">${name}</h3>
 
             <div class="modal__cart-item-count">
-                <button class="modal__btn modal__minus" data-id=${id}>-</button>
+                <button class="modal__btn modal__minus" data-id=${id} aria-label="кнопка минус-уменьшение числа товара">-</button>
                 <span class="modal__count">${cartItem.count}</span>
-                <button class="modal__btn modal__plus" data-id=${id}>+</button>
+                <button class="modal__btn modal__plus" data-id=${id} aria-label="кнопка плюс-увеличение числа товара">+</button>
             </div>
 
             <p class="modal__cart-item-price">${price * cartItem.count}&nbsp;₽</p>

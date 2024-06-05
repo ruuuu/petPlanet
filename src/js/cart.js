@@ -76,8 +76,6 @@ const updateCartItem = (productId, change) => { // change = 1 или -1
         renderCartItems(сartItemsList, cartItems, products); 
         updatCartCount();
     }
-
-    
 };
 
 

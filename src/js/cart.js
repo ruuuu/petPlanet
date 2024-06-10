@@ -1,7 +1,5 @@
-import { fetchCartItems } from "./api.js";
-import { renderCartItems } from "./dom.js";
-import { submitOrder } from "./api.js";
-import { createOrderMessage } from "./dom.js";
+import { fetchCartItems, submitOrder } from "./api.js";
+import { renderCartItems, createOrderMessage } from "./dom.js";
 
 
 
@@ -42,14 +40,14 @@ export const addToCart = (productId) => {
     const cartItems = JSON.parse(localStorage.getItem('cartItems') || "[]");  // превращаем из строки в json когда берем из localStorage
     //console.log(cartItems)
 
-    const item = cartItems.find((item) => item.id === productId);  // вернет элемент
+    const existingItem = cartItems.find((item) => item.id === productId);  // вернет элемент
     //console.log('item ', item)
 
-    if(item){
-        item.count++;
+    if(existingItem){
+        existingItem.count += 1;
     }
     else{
-        cartItems.push({id: productId, count: 1});
+        cartItems.push({ id: productId, count: 1 });
     }
 
     localStorage.setItem('cartItems', JSON.stringify(cartItems));  //  JSON.stringify превраащет в строку, обновляем localStorage
@@ -73,14 +71,18 @@ const updateCartItem = (productId, change) => { // change = 1 или -1
 
         localStorage.setItem('cartItems', JSON.stringify(cartItems)); // обновляем 
         const products = JSON.parse(localStorage.getItem('cartProductDetails') || "[]");
-        renderCartItems(сartItemsList, cartItems, products); 
+
         updatCartCount();
+
+        renderCartItems(сartItemsList, cartItems, products); 
+
+        totalPriceElem.innerHTML = `${calculateTotalPrice(cartItems, products)}&nbsp;₽`;
     }
 };
 
 
-
-сartItemsList.addEventListener('click', (evt) => {
+// обработчик вешаем не на кнопки+/- а на весь спсиок(это делегирование):
+сartItemsList.addEventListener('click', (evt) => { // нажатие на кнопки +/-  у товара Корзины
     const target = evt.target;
     
     if(target.classList.contains('modal__plus')){ // closest(.modal__plus)
@@ -119,12 +121,10 @@ cartButton.addEventListener('click', async() => { // нажатие на ико�
 
     localStorage.setItem('cartProductDetails', JSON.stringify(products)); // при удалении товара, он из cartItems удалится, а из products нет
         
-    updatCartCount();
+    //updatCartCount();
 
     renderCartItems(сartItemsList, cartItems, products);
-
     const totalPrice = calculateTotalPrice(cartItems, products);
-
     totalPriceElem.innerHTML = `${totalPrice}&nbsp;₽`;  // не textContent,  с ним не будет рабоать &nbsp;
 });
 
@@ -156,6 +156,7 @@ cartForm.addEventListener('submit', async(evt) => {
         return { id: item.id, quantity: item.count }; 
     });
 
+    
     // дестурировали ответ:
     const { orderId } = await submitOrder(orderAdress, products); // await тк submitOrder асинхронная
 
@@ -168,7 +169,6 @@ cartForm.addEventListener('submit', async(evt) => {
     document.body.append(orderMessageElement);
     modalOverlay.style.display = 'none'; // закрываем модалку
     updatCartCount(); 
-    
 });
 
 

@@ -45,7 +45,7 @@ export const fetchProductByCategory = (category) => {
 
 export const fetchCartItems = (ids) => {
 
-    return fetchData(`/api/products/list/${ids.join(",")}`);
+    return fetchData(`/api/products/list/${ids.join(",")}`); // join(",") из массива делаем строку с рзделителем запятая
 
     // try{
     //     const response = await fetch(`${API_URL}/api/products/list/${ids.join(",")}`);  // join(",") из массива делаем строку с рзделителем запятая
